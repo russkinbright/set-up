@@ -91,7 +91,7 @@ npx prisma migrate dev --name added_unique_id
 # schema.prisma বদলালে এই কমান্ড চালাও
 # =================================================
 
-npx prisma migrate dev --name added_unique_id
+npx prisma migrate dev --name update_user_table
 
 
 

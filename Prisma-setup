@@ -94,6 +94,20 @@ npx prisma migrate dev --name added_unique_id
 npx prisma migrate dev --name update_user_table
 
 
+# =================================================
+# ১️⃣ Prisma Client Generate (নতুন model recognize করার জন্য)
+# =================================================
+npx prisma generate
+
+# =================================================
+# ২️⃣ Database Migration (Admin table তৈরি বা update করতে)
+# =================================================
+npx prisma migrate dev --name add_admin_model
+
+# =================================================
+# ৩️⃣ Prisma Studio দিয়ে verify করা (Optional)
+# =================================================
+npx prisma studio
 
 
 

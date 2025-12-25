@@ -1,0 +1,112 @@
+# =================================================
+# BACKEND FOLDER এ ঢুকে Prisma + PostgreSQL ইনস্টল
+# =================================================
+
+# Prisma, Prisma Client এবং PostgreSQL driver ইনস্টল
+npm install prisma @prisma/client pg
+
+# Prisma initialize করা (schema.prisma + .env তৈরি হবে)
+npx prisma init --datasource-provider PostgreSQL
+
+# Prisma client generate (এটা খুব জরুরি)
+npx prisma generate
+
+
+# =================================================
+# Standard PostgreSQL এর জন্য Prisma Adapter সেটআপ
+# =================================================
+
+# Prisma PostgreSQL adapter + pg driver
+npm install @prisma/adapter-pg pg
+
+# pg এর টাইপস (TypeScript ব্যবহার করলে দরকার)
+npm install --save-dev @types/pg
+
+
+# =================================================
+# ROOT PROJECT FOLDER (backend + frontend আছে)
+# =================================================
+
+# concurrently ইনস্টল (একসাথে backend + frontend চালাতে)
+npm install concurrently --save-dev
+
+
+# =================================================
+# DATABASE GUI দেখার জন্য (Prisma Studio)
+# BACKEND FOLDER এ চালাবে
+# =================================================
+
+# Prisma Studio চালু (Browser এ database দেখাবে)
+npx prisma studio
+
+
+# =================================================
+# PostgreSQL নতুন password সেট করার ধাপ (Manual)
+# =================================================
+# 1️⃣ এই ফাইল ওপেন করো:
+# C:\Program Files\PostgreSQL\17\data\pg_hba.conf
+#
+# 2️⃣ নিচের লাইনগুলো:
+# host  all  all  127.0.0.1/32  scram-sha-256
+# host  all  all  ::1/128       scram-sha-256
+#
+# পরিবর্তন করে করো:
+# host  all  all  127.0.0.1/32  trust
+# host  all  all  ::1/128       trust
+#
+# 3️⃣ services.msc → postgresql-x64-17 → Restart
+#
+# 4️⃣ SQL Shell (psql) ওপেন করে নিচের কমান্ড দাও:
+
+# ALTER USER postgres WITH PASSWORD 'your_new_password';
+
+# বের হওয়ার জন্য:
+# \q
+
+
+# =================================================
+# PASSWORD SECURITY (bcrypt ব্যবহার)
+# =================================================
+
+# bcrypt ইনস্টল (password hash করার জন্য)
+npm install bcrypt
+
+# bcrypt এর টাইপস
+npm install --save-dev @types/bcrypt
+
+
+# =================================================
+# schema.prisma ফাইলে নতুন field / column যোগ করলে
+# =================================================
+
+# Prisma client generate
+npx prisma generate
+
+# Database migrate (table/column update হবে)
+npx prisma migrate dev --name added_unique_id
+
+
+# =================================================
+# Prisma Studio দিয়ে table/column add করো না
+# schema.prisma বদলালে এই কমান্ড চালাও
+# =================================================
+
+npx prisma migrate dev --name added_unique_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
